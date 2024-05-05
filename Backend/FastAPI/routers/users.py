@@ -1,7 +1,7 @@
-from fastapi import FastAPI
+from fastapi import APIRouter, HTTPException
 from pydantic import BaseModel
 
-app = FastAPI()
+router = APIRouter(prefix="/users", tags=["Users"])
 
 # Entity User
 class User(BaseModel):
@@ -18,7 +18,7 @@ user_list = [User(id=1, name="Hugo", surname="Rene", url="https://hugo.dev", age
          ]
 
 # http://127.0.0.1:8000/userjson
-@app.get("/usersjson")
+@router.get("/usersjson")
 async def usersjson():
     return [
         {"name":"Hugo", "surname": "Rene", "url": "https://hugo.dev", "age":32},
@@ -27,19 +27,19 @@ async def usersjson():
     ]
 
 # http://127.0.0.1:8000/users
-@app.get("/users")
+@router.get("/")
 async def users():
     return user_list
 
 # PATH
 # http://127.0.0.1:8000/user/1
-@app.get("/user/{id}")
+@router.get("/{id}")
 async def user(id: int):
     return search_user(id)
 
 # QUERY
 # http://127.0.0.1:8000/userquery?id=1
-@app.get("/user/")
+@router.get("/q/")
 async def user(id: int):
     return search_user(id)
 
@@ -49,41 +49,32 @@ def search_user(id: int):
     try:
         return list(users)[0]
     except:
-        return {"error":"couldnt find user"}
+        # raise HTTPException(status_code=400, detail="couldnt find user")
+        return {"error": "couldnt find user"}
 
 
 ### Post method
-@app.post("/user/")
+@router.post("/", status_code=201)
 async def user(user: User):
     if type(search_user(user.id)) == User:
-        return {"error":"Id of user already exist"}
-    
+        raise HTTPException(status_code=400, detail="Id of user already exist")
     user_list.append(user)
     return user
 
 ### Put method
-@app.put("/user/")
+@router.put("/")
 async def user(user: User):
-
-    found = False
-
     for index, saved_user in enumerate(user_list):
         if saved_user.id == user.id:
             user_list[index] = user
-            found = True
+            return {"updated":user}
+    raise HTTPException(status_code=400, detail="couldnt update user")
 
-    if not found:
-        return {"error":"Couldn't update user"}
-    else:
-        return user
     
-@app.delete("/user/{id}")
+@router.delete("/{id}")
 async def user(id: int):
     for index, saved_user in enumerate(user_list):
-        print(saved_user.id)
-        print(id)
         if saved_user.id == id:
             del user_list[index]
             return {"deleted":saved_user}
-        else:
-            return {"error":"Couldn't delete user"}
+    raise HTTPException(status_code=400, detail="couldnt delete user")
