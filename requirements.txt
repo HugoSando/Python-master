@@ -1,0 +1,27 @@
+annotated-types @ file:///croot/annotated-types_1709542908624/work
+anyio @ file:///croot/anyio_1706220167567/work
+argon2-cffi @ file:///opt/conda/conda-bld/argon2-cffi_1645000214183/work
+argon2-cffi-bindings @ file:///work/perseverance-python-buildout/croot/argon2-cffi-bindings_1698877183685/work
+bcrypt @ file:///work/perseverance-python-buildout/croot/bcrypt_1698864043363/work
+cffi @ file:///croot/cffi_1714483155441/work
+click @ file:///work/perseverance-python-buildout/croot/click_1698845879718/work
+cryptography @ file:///croot/cryptography_1714660666131/work
+ecdsa @ file:///tmp/build/80754af9/ecdsa_1622554921100/work
+fastapi @ file:///home/conda/feedstock_root/build_artifacts/fastapi_1714446803450/work
+h11 @ file:///croot/h11_1706652277403/work
+idna @ file:///croot/idna_1714398848350/work
+passlib==1.7.4
+pyasn1 @ file:///Users/ktietz/demo/mc3/conda-bld/pyasn1_1629708007385/work
+pycparser @ file:///tmp/build/80754af9/pycparser_1636541352034/work
+pydantic @ file:///croot/pydantic_1709577974639/work
+pydantic_core @ file:///croot/pydantic-core_1709573961665/work
+python-jose @ file:///home/conda/feedstock_root/build_artifacts/python-jose_1624701740191/work
+python-multipart @ file:///home/conda/feedstock_root/build_artifacts/python-multipart_1707760088566/work
+rsa @ file:///tmp/build/80754af9/rsa_1614366226499/work
+setuptools==69.5.1
+six @ file:///tmp/build/80754af9/six_1644875935023/work
+sniffio @ file:///croot/sniffio_1705431295498/work
+starlette @ file:///home/conda/feedstock_root/build_artifacts/starlette-recipe_1709667058396/work
+typing_extensions @ file:///croot/typing_extensions_1705619912070/work
+uvicorn @ file:///home/conda/feedstock_root/build_artifacts/uvicorn-split_1710932005860/work
+wheel==0.43.0
